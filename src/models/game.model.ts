@@ -5,6 +5,7 @@ import {GameProfile} from './game-profile.model';
 export class Game extends Entity {
   @property({
     type: 'number',
+    id: true,
   })
   gameId?: number;
 
