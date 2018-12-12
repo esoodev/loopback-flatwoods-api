@@ -1,4 +1,11 @@
-import {Entity, model, property} from '@loopback/repository';
+import {
+  Entity,
+  model,
+  property,
+  hasMany,
+  belongsTo,
+} from '@loopback/repository';
+import {ListingType, ListingComment} from './';
 
 @model()
 export class Listing extends Entity {
@@ -7,12 +14,6 @@ export class Listing extends Entity {
     id: true,
   })
   listingId?: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  listingTypeId: number;
 
   @property({
     type: 'number',
@@ -59,6 +60,12 @@ export class Listing extends Entity {
     type: 'date',
   })
   endsAt?: string;
+
+  @hasMany(() => ListingComment)
+  listingComments?: ListingComment[];
+
+  @belongsTo(() => ListingType)
+  listingTypeId: number;
 
   constructor(data?: Partial<Listing>) {
     super(data);

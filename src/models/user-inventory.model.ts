@@ -1,4 +1,10 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {User, Game} from './';
+
+interface userInventoryItem {
+  itemId: number;
+  itemCount: number;
+}
 
 @model()
 export class UserInventory extends Entity {
@@ -9,22 +15,17 @@ export class UserInventory extends Entity {
   userInventoryId?: number;
 
   @property({
-    type: 'number',
+    type: 'array',
+    itemType: 'object',
     required: true,
   })
-  itemId: number;
+  userInventotyItems: userInventoryItem[];
 
-  @property({
-    type: 'number',
-    required: true,
-  })
-  itemQuantity: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
+  @belongsTo(() => User)
   userId: number;
+
+  @belongsTo(() => Game)
+  gameId: number;
 
   @property({
     type: 'date',

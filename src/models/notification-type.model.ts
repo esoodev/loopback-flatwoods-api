@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Notification} from './notification.model';
 
 @model()
 export class NotificationType extends Entity {
@@ -18,6 +19,9 @@ export class NotificationType extends Entity {
     type: 'string',
   })
   notificationTypeDescription?: string;
+
+  @hasMany(() => Notification)
+  notifications?: Notification[];
 
   constructor(data?: Partial<NotificationType>) {
     super(data);

@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {User, Game} from './';
 
 @model()
 export class GameProfile extends Entity {
@@ -17,14 +18,6 @@ export class GameProfile extends Entity {
     type: 'number',
     required: true,
   })
-  userId: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  gameId: number;
-
   @property({
     type: 'number',
     default: 0,
@@ -35,6 +28,12 @@ export class GameProfile extends Entity {
     type: 'date',
   })
   createdAt?: string;
+
+  @belongsTo(() => User)
+  userId: number;
+
+  @belongsTo(() => Game)
+  gameId: number;
 
   constructor(data?: Partial<GameProfile>) {
     super(data);

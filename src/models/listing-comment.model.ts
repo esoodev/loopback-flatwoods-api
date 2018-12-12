@@ -1,18 +1,13 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Listing} from './listing.model';
 
 @model()
-export class ListingComments extends Entity {
+export class ListingComment extends Entity {
   @property({
     type: 'number',
     id: true,
   })
   listingCommentId?: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  listingId: number;
 
   @property({
     type: 'number',
@@ -42,7 +37,10 @@ export class ListingComments extends Entity {
   })
   createdAt?: string;
 
-  constructor(data?: Partial<ListingComments>) {
+  @belongsTo(() => Listing)
+  listingId: number;
+
+  constructor(data?: Partial<ListingComment>) {
     super(data);
   }
 }

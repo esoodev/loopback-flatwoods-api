@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {NotificationType} from './notification-type.model';
 
 @model()
 export class Notification extends Entity {
@@ -7,13 +8,6 @@ export class Notification extends Entity {
     id: true,
   })
   notificationId?: number;
-
-  @property({
-    type: 'number',
-    required: true,
-    default: 0,
-  })
-  notificationTypeId: number;
 
   @property({
     type: 'string',
@@ -48,6 +42,9 @@ export class Notification extends Entity {
     type: 'date',
   })
   dismissedAt?: string;
+
+  @belongsTo(() => NotificationType)
+  notificationTypeId: number;
 
   constructor(data?: Partial<Notification>) {
     super(data);

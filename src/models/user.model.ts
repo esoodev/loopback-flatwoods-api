@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {UserInventory} from './user-inventory.model';
 
 @model()
 export class User extends Entity {
@@ -66,6 +67,9 @@ export class User extends Entity {
     type: 'date',
   })
   createdAt?: string;
+
+  @hasMany(() => UserInventory)
+  userInventories: UserInventory[];
 
   constructor(data?: Partial<User>) {
     super(data);

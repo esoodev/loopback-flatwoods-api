@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {User} from './user.model';
 
 interface packageItem {
   itemId: number;
@@ -21,15 +22,12 @@ export class Package extends Entity {
   packageItems: packageItem[];
 
   @property({
-    type: 'number',
-    required: true,
-  })
-  userId: number;
-
-  @property({
     type: 'date',
   })
   createdAt?: string;
+
+  @belongsTo(() => User)
+  userId: number;
 
   constructor(data?: Partial<Package>) {
     super(data);

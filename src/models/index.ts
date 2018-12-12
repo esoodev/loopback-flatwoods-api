@@ -7,7 +7,7 @@ export * from './tags-map.model';
 export * from './listing.model';
 export * from './listing-type.model';
 export * from './listing-types-listings-map.model';
-export * from './listing-comments.model';
+export * from './listing-comment.model';
 export * from './package.model';
 export * from './item.model';
 export * from './status.model';

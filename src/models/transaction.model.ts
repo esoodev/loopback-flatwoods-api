@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {User} from './';
 
 @model()
 export class Transaction extends Entity {
@@ -8,11 +9,8 @@ export class Transaction extends Entity {
   })
   transactionId?: number;
 
-  @property({
-    type: 'number',
-    required: true,
-  })
-  sellerUserId?: number;
+  @belongsTo(() => User, {keyFrom: 'sellerUserId'})
+  sellerUserId: number;
 
   @property({
     type: 'number',
@@ -20,10 +18,7 @@ export class Transaction extends Entity {
   })
   sellerPackageId: number;
 
-  @property({
-    type: 'number',
-    required: true,
-  })
+  @belongsTo(() => User, {keyFrom: 'buyerUserId'})
   buyerUserId: number;
 
   @property({

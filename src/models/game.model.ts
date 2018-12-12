@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {GameProfile} from './game-profile.model';
 
 @model()
 export class Game extends Entity {
@@ -27,6 +28,9 @@ export class Game extends Entity {
     type: 'date',
   })
   createdAt?: string;
+
+  @hasMany(() => GameProfile)
+  gameProfiles?: GameProfile[];
 
   constructor(data?: Partial<Game>) {
     super(data);

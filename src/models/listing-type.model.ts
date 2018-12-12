@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Listing} from './listing.model';
 
 @model()
 export class ListingType extends Entity {
@@ -29,6 +30,9 @@ export class ListingType extends Entity {
     type: 'date',
   })
   createdAt?: string;
+
+  @hasMany(() => Listing)
+  listings?: Listing[];
 
   constructor(data?: Partial<ListingType>) {
     super(data);
