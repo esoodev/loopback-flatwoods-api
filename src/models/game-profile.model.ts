@@ -4,7 +4,8 @@ import {User, Game} from './';
 @model()
 export class GameProfile extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
+    required: true,
     id: true,
   })
   gameProfileId?: number;
@@ -16,11 +17,7 @@ export class GameProfile extends Entity {
 
   @property({
     type: 'number',
-    required: true,
-  })
-  @property({
-    type: 'number',
-    default: 0,
+    default: 1,
   })
   statusId?: number;
 

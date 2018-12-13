@@ -1,0 +1,18 @@
+{
+  "ids": {
+    "User": 2,
+    "Game": 2,
+    "GameProfile": 2
+  },
+  "models": {
+    "User": {
+      "1": "{\"userEmail\":\"test@gmail.com\",\"userNickname\":\"Testudo\",\"userFirstName\":\"Nathan\",\"userLastName\":\"Lee\",\"userPassword\":\"password\",\"userPasswordSalt\":\"salt\",\"userPhone\":\"+821050951216\",\"country\":\"Republic of Korea\",\"statusId\":1,\"createdAt\":\"2018-12-12T09:37:08.688Z\",\"userId\":1}"
+    },
+    "Game": {
+      "1": "{\"gameName\":\"Flatwoods\",\"developerName\":\"soomin.lee\",\"publisherName\":\"TrustUS\",\"createdAt\":\"2018-12-12T09:39:43.817Z\",\"gameId\":1}"
+    },
+    "GameProfile": {
+      "nathansoominlee@gmail.com": "{\"gameProfileId\":\"nathansoominlee@gmail.com\",\"gameProfileNickname\":\"nathansooominlee\",\"statusId\":1,\"createdAt\":\"2018-12-12T09:44:14.629Z\",\"userId\":1,\"gameId\":1}"
+    }
+  }
+}

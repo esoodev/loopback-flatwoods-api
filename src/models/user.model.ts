@@ -1,5 +1,6 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
 import {UserInventory} from './user-inventory.model';
+import {GameProfile} from './game-profile.model';
 
 @model()
 export class User extends Entity {
@@ -59,7 +60,7 @@ export class User extends Entity {
   @property({
     type: 'number',
     required: true,
-    default: 0,
+    default: 1,
   })
   statusId?: number;
 
@@ -70,6 +71,9 @@ export class User extends Entity {
 
   @hasMany(() => UserInventory)
   userInventories: UserInventory[];
+
+  @hasMany(() => GameProfile)
+  gameProfiles: GameProfile[];
 
   constructor(data?: Partial<User>) {
     super(data);

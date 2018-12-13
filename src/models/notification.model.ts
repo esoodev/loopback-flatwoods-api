@@ -28,8 +28,7 @@ export class Notification extends Entity {
 
   @property({
     type: 'number',
-    required: true,
-    default: 0,
+    default: 1,
   })
   statusId: number;
 

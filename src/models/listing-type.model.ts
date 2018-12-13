@@ -22,7 +22,7 @@ export class ListingType extends Entity {
 
   @property({
     type: 'number',
-    default: 0,
+    default: 1,
   })
   statusId?: number;
 
