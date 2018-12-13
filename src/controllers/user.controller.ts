@@ -15,13 +15,15 @@ import {
   del,
   requestBody,
 } from '@loopback/rest';
-import {User} from '../models';
-import {UserRepository} from '../repositories';
+import {User, GameProfile} from '../models';
+import {UserRepository, GameProfileRepository} from '../repositories';
 
 export class UserController {
   constructor(
     @repository(UserRepository)
-    public userRepository : UserRepository,
+    public userRepository: UserRepository,
+    @repository(GameProfileRepository)
+    public gameProfileRepository: GameProfileRepository,
   ) {}
 
   @post('/users', {
@@ -118,5 +120,21 @@ export class UserController {
   })
   async deleteById(@param.path.number('id') id: number): Promise<void> {
     await this.userRepository.deleteById(id);
+  }
+
+  @get('/users/{id}/game-profiles', {
+    responses: {
+      '200': {
+        description: 'GameProfile model instances belonging to User',
+        content: {'application/json': {schema: {'x-ts-type': GameProfile}}},
+      },
+    },
+  })
+  async findGameProfilesByUserId(
+    @param.path.number('id') userId: number,
+  ): Promise<GameProfile[]> {
+    return await this.gameProfileRepository.find({
+      where: {userId: userId},
+    });
   }
 }
