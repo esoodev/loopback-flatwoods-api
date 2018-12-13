@@ -3,7 +3,7 @@ export * from './user-inventory.model';
 export * from './game.model';
 export * from './game-profile.model';
 export * from './tag.model';
-export * from './tags-map.model';
+export * from './tags-listings-map.model';
 export * from './listing.model';
 export * from './listing-type.model';
 export * from './listing-types-listings-map.model';
