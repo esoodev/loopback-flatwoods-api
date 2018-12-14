@@ -131,10 +131,10 @@ export class UserController {
     },
   })
   async findGameProfilesByUserId(
-    @param.path.number('id') userId: number,
+    @param.path.number('id') id: number,
   ): Promise<GameProfile[]> {
-    return await this.gameProfileRepository.find({
-      where: {userId: userId},
-    });
+    return await this.userRepository
+      .gameProfiles(id)
+      .find({where: {userId: id}});
   }
 }
