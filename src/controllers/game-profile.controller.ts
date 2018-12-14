@@ -15,13 +15,15 @@ import {
   del,
   requestBody,
 } from '@loopback/rest';
-import {GameProfile} from '../models';
-import {GameProfileRepository} from '../repositories';
+import {GameProfile, User} from '../models';
+import {GameProfileRepository, UserRepository} from '../repositories';
 
 export class GameProfileController {
   constructor(
     @repository(GameProfileRepository)
-    public gameProfileRepository : GameProfileRepository,
+    public gameProfileRepository: GameProfileRepository,
+    @repository(UserRepository)
+    public userRepository: UserRepository,
   ) {}
 
   @post('/game-profiles', {
@@ -63,7 +65,8 @@ export class GameProfileController {
     },
   })
   async find(
-    @param.query.object('filter', getFilterSchemaFor(GameProfile)) filter?: Filter,
+    @param.query.object('filter', getFilterSchemaFor(GameProfile))
+    filter?: Filter,
   ): Promise<GameProfile[]> {
     return await this.gameProfileRepository.find(filter);
   }
@@ -118,5 +121,19 @@ export class GameProfileController {
   })
   async deleteById(@param.path.number('id') id: number): Promise<void> {
     await this.gameProfileRepository.deleteById(id);
+  }
+
+  @get('/game-profiles/{id}/user', {
+    responses: {
+      '200': {
+        description: 'User model instance belonging to GameProfile',
+        content: {'application/json': {schema: {'x-ts-type': User}}},
+      },
+    },
+  })
+  async findUserByGameProfileId(
+    @param.path.number('id') id: number,
+  ): Promise<User> {
+    return await this.gameProfileRepository.user(id);
   }
 }
