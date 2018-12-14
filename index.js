@@ -9,8 +9,15 @@ if (require.main === module) {
       port: +process.env.PORT || 3000,
       host: process.env.HOST || 'localhost',
       openApiSpec: {
-        // useful when used with OASGraph to locate your application
+        // Configure servers for OpenAPI spec
+        servers: [{url: 'http://127.0.0.1:3000'}],
+        // Set "servers" based on HTTP request headers, default to false
         setServersFromRequest: true,
+        // Maps urls for various forms of the spec. Default to:
+        endpointMapping: {
+          '/openapi.json': {version: '3.0.0', format: 'json'},
+          '/openapi.yaml': {version: '3.0.0', format: 'yaml'},
+        },
       },
     },
   };

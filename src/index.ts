@@ -26,7 +26,6 @@ export async function main(options: ApplicationConfig = {}) {
     let oas = await request.get(`${app.restServer.url}/openapi.json`);
 
     const {schema, report} = await createGraphQlSchema(JSON.parse(oas), {
-      // strict: true,
       addSubOperations: true,
     });
     const graphqlServer = express();
